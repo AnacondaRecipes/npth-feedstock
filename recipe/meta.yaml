@@ -29,10 +29,10 @@ test:
     - cd tests
     # Build tests, link against npth
     - export NTPH_PATH=${CONDA_PREFIX}/lib
-    - gcc t-cond.c -o t-cond -I${CONDA_PREFIX}/include -L${NTPH_PATH} -lnpth -rpath ${NTPH_PATH}
-    - gcc t-fork.c -o t-fork -I${CONDA_PREFIX}/include -L${NTPH_PATH} -lnpth -rpath ${NTPH_PATH}
-    - gcc t-mutex.c -o t-mutex -I${CONDA_PREFIX}/include -L${NTPH_PATH} -lnpth -rpath ${NTPH_PATH}
-    - gcc t-thread.c -o t-thread -I${CONDA_PREFIX}/include -L${NTPH_PATH} -lnpth -rpath ${NTPH_PATH}
+    - $CC t-cond.c -o t-cond -I${CONDA_PREFIX}/include -L${NTPH_PATH} -lnpth -rpath ${NTPH_PATH}
+    - $CC t-fork.c -o t-fork -I${CONDA_PREFIX}/include -L${NTPH_PATH} -lnpth -rpath ${NTPH_PATH}
+    - $CC t-mutex.c -o t-mutex -I${CONDA_PREFIX}/include -L${NTPH_PATH} -lnpth -rpath ${NTPH_PATH}
+    - $CC t-thread.c -o t-thread -I${CONDA_PREFIX}/include -L${NTPH_PATH} -lnpth -rpath ${NTPH_PATH}
     # Run tests
     - ./t-cond --verbose
     - ./t-fork --verbose
