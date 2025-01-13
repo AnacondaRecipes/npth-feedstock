@@ -1,15 +1,13 @@
 {% set name = "npth" %}
-{% set version = "1.7" %}
-{% set sha256 = "8589f56937b75ce33b28d312fccbf302b3b71ec3f3945fde6aaa74027914ad05" %}
+{% set version = "1.8" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  fn: {{ name }}-{{ version }}.tar.gz
   url: https://www.gnupg.org/ftp/gcrypt/{{ name }}/{{ name }}-{{ version }}.tar.bz2
-  sha256: {{ sha256 }}
+  sha256: 8bd24b4f23a3065d6e5b26e98aba9ce783ea4fd781069c1b35d149694e90ca3e
 
 build:
   number: 0
@@ -20,14 +18,24 @@ build:
 requirements:
   build:
     - {{ compiler('c') }}
-    - {{ compiler('cxx') }}
-    - gnuconfig  # [unix]
-    - make  # [unix]
-  host:
-    - libgpg-error
+    - make
 
 test:
+  source_files:
+    - tests
   commands:
+    - cd tests
+    # Build tests, link against npth
+    - export NTPH_PATH=${CONDA_PREFIX}/lib
+    - gcc t-cond.c -o t-cond -I${CONDA_PREFIX}/include -L${NTPH_PATH} -lnpth -rpath ${NTPH_PATH}
+    - gcc t-fork.c -o t-fork -I${CONDA_PREFIX}/include -L${NTPH_PATH} -lnpth -rpath ${NTPH_PATH}
+    - gcc t-mutex.c -o t-mutex -I${CONDA_PREFIX}/include -L${NTPH_PATH} -lnpth -rpath ${NTPH_PATH}
+    - gcc t-thread.c -o t-thread -I${CONDA_PREFIX}/include -L${NTPH_PATH} -lnpth -rpath ${NTPH_PATH}
+    # Run tests
+    - ./t-cond --verbose
+    - ./t-fork --verbose
+    - ./t-mutex --verbose
+    - ./t-thread --verbose
 
 about:
   home: https://www.gnupg.org/software/ntbtls/index.html
