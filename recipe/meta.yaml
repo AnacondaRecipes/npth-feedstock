@@ -41,10 +41,12 @@ test:
     - ./t-thread --verbose
 
 about:
-  home: https://www.gnupg.org/software/ntbtls/index.html
+  home: https://www.gnupg.org/software/npth/index.html
+  doc_url: https://www.gnupg.org/software/npth/index.html
+  dev_url: https://github.com/gpg/npth
   summary: The New GNU Portable Threads Library
-  license: LGPL-2.0-only
-  license_family: GPL
+  license: LGPL-2.1
+  license_family: LGPL
   license_file: COPYING.LIB
   description: |
     nPth is a library to provide the GNU Pth API and thus a non-preemptive
@@ -59,3 +61,4 @@ extra:
     - zklaus
     - mariusvniekerk
     - notestaff
+    - msentissi
