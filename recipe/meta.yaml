@@ -21,6 +21,8 @@ requirements:
     - make
 
 test:
+  requires:
+    - {{ compiler('c') }}
   source_files:
     - tests
   commands:
