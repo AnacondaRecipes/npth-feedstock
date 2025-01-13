@@ -28,11 +28,11 @@ test:
   commands:
     - cd tests
     # Build tests, link against npth
-    - export NTPH_PATH=${CONDA_PREFIX}/lib
-    - $CC t-cond.c -o t-cond -I${CONDA_PREFIX}/include -L${NTPH_PATH} -lnpth -rpath ${NTPH_PATH}
-    - $CC t-fork.c -o t-fork -I${CONDA_PREFIX}/include -L${NTPH_PATH} -lnpth -rpath ${NTPH_PATH}
-    - $CC t-mutex.c -o t-mutex -I${CONDA_PREFIX}/include -L${NTPH_PATH} -lnpth -rpath ${NTPH_PATH}
-    - $CC t-thread.c -o t-thread -I${CONDA_PREFIX}/include -L${NTPH_PATH} -lnpth -rpath ${NTPH_PATH}
+    - export COMP_OPTIONS="-I${CONDA_PREFIX}/include -L${CONDA_PREFIX}/lib -lnpth -Wl,-rpath,${CONDA_PREFIX}/lib"
+    - $CC t-cond.c -o t-cond $COMP_OPTIONS
+    - $CC t-fork.c -o t-fork $COMP_OPTIONS
+    - $CC t-mutex.c -o t-mutex $COMP_OPTIONS
+    - $CC t-thread.c -o t-thread $COMP_OPTIONS
     # Run tests
     - ./t-cond --verbose
     - ./t-fork --verbose
