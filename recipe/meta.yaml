@@ -29,7 +29,7 @@ test:
 about:
   home: https://www.gnupg.org/software/npth/index.html
   doc_url: https://www.gnupg.org/software/npth/index.html
-  dev_url: https://github.com/gpg/npth
+  dev_url: https://git.gnupg.org/cgi-bin/gitweb.cgi?p=npth.git
   summary: The New GNU Portable Threads Library
   license: LGPL-2.1
   license_family: LGPL
